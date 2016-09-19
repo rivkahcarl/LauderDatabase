@@ -1,19 +1,12 @@
-import logging
-
 from django.db import models
 from django.utils.translation import ugettext as _
 
-logger = logging.getLogger(__name__)
-
 
 class Student(models.Model):
-
-    # unique_id = models.CharField(primary_key=True)
-
     first_name = models.CharField(max_length=512,
-                                    null=False,
-                                    db_index=True,
-                                    help_text=_("First Name"))
+                                  null=False,
+                                  db_index=True,
+                                  help_text=_("First Name"))
 
     last_name = models.CharField(max_length=512,
                                  null=True,
@@ -32,15 +25,15 @@ class Student(models.Model):
         blank=True,
         help_text=_("City"),
     )
-    state = models.CharField(
-        FIPSState,
-        null=True,
-        blank=True,
-        db_column='state',
-        on_delete=models.PROTECT,
-        related_name='location_state',
-        help_text=_("State"),
-    )
+    # state = models.CharField(
+    #     FIPSState,
+    #     null=True,
+    #     blank=True,
+    #     db_column='state',
+    #     on_delete=models.PROTECT,
+    #     related_name='location_state',
+    #     help_text=_("State"),
+    # )
 
     zip = models.CharField(
         max_length=10,
@@ -62,13 +55,10 @@ class Student(models.Model):
         help_text=_("Country"),
     )
 
-
-
-
     def __unicode__(self):
         return u'{0}-{1}'.format(self.unique_id, self.first_name)
 
-    class Meta:
-        app_label = 'student_database'
-        db_table = 'student_base_info'
-        verbose_name = _("Student Base")
+    # class Meta:
+    #     app_label = 'student_database'
+    #     db_table = 'student_base_info'
+    #     verbose_name = _("Student Base")

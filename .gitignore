@@ -1,4 +1,7 @@
 # Pycharm
 .idea
+
 # Mac
 .DS_STORE
+
+*.pyc
