@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 
+from django_countries.fields import CountryField
+
 
 class Student(models.Model):
     first_name = models.CharField(max_length=512,
@@ -48,12 +50,7 @@ class Student(models.Model):
         blank=True,
         help_text=_("Region"),
     )
-    country = models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        help_text=_("Country"),
-    )
+    country = CountryField()
 
     def __unicode__(self):
         return u'{0}-{1}'.format(self.unique_id, self.first_name)

@@ -33,7 +33,9 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'django_countries',
+]
 
 LOCAL_APPS = [
     'students',
@@ -41,6 +43,8 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+COUNTRIES_FIRST = ['US']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
