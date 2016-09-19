@@ -4,7 +4,7 @@
   {% if user.is_authenticated %}
 
     <a href="{% url 'students:home' %}">Students</a><br>
-    <a href="{% url 'programs:home' %}">Programs</a><br>
+    <a href="{% url 'programs:programs-list' %}">Programs</a><br>
   
   {% else %}
     Don't have an account?  Signup:

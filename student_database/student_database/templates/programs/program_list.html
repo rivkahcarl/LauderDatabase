@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Students
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'programs:create' %}">New Program</a>
+  <br>
+  <br>
+
+    <ul>
+    {% for program in object_list %}
+        <li>{{ program.event_name }}</li>
+    {% empty %}
+        <li>No Programs have been created yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

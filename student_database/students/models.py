@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 from django_countries.fields import CountryField
+from django.conf import settings
 
 
 class Student(models.Model):
@@ -27,15 +28,12 @@ class Student(models.Model):
         blank=True,
         help_text=_("City"),
     )
-    # state = models.CharField(
-    #     FIPSState,
-    #     null=True,
-    #     blank=True,
-    #     db_column='state',
-    #     on_delete=models.PROTECT,
-    #     related_name='location_state',
-    #     help_text=_("State"),
-    # )
+    state = models.CharField(
+        max_length=2,
+        choices=settings.US_STATES,
+        null=True,
+        blank=True,
+        )
 
     zip = models.CharField(
         max_length=10,
@@ -50,7 +48,7 @@ class Student(models.Model):
         blank=True,
         help_text=_("Region"),
     )
-    country = CountryField()
+    country = CountryField(null=True)
 
     def __unicode__(self):
         return u'{0}-{1}'.format(self.unique_id, self.first_name)
