@@ -9,11 +9,31 @@
   <br>
   <br>
 
-    <ul>
-    {% for program in object_list %}
-        <li>{{ program.event_name }}</li>
-    {% empty %}
-        <li>No Programs have been created yet.</li>
-    {% endfor %}
-    </ul>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Event Start</th>
+        <th>Event Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for program in object_list %}
+        <tr>
+          <td><a href="#">{{ program.event_name }}</a></td>
+          <td>{{ program.event_start_date_time }}</td>
+          {% if program.event_city %}
+            <td>{{ program.event_city }}, {{program.event_state}}</td>
+          {% else %}
+            <td></td>
+          {% endif %}
+        </tr>
+      {% empty %}
+        <tr>
+          <td>No Program has been created yet</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
