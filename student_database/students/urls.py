@@ -5,5 +5,8 @@ from students import views
 
 
 urlpatterns = [
-    url(r'^$', login_required(views.Students.as_view()), name='home'),
+    url(r'^$', login_required(views.Students.as_view()), name='students-list'),
+    url(r'^create$',
+        login_required(views.StudentCreate.as_view()),
+        name='create'),
 ]

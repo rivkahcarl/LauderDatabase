@@ -8,7 +8,9 @@ from django.conf import settings
 class Program(models.Model):
     event_name = models.CharField(max_length=512)
 
-    event_start_date_time = models.DateTimeField()
+    event_start_date_time = models.DateTimeField(
+        help_text=_('10/25/2006 14:30')
+    )
 
     event_end_date_time = models.DateTimeField()
 

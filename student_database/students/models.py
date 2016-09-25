@@ -53,7 +53,5 @@ class Student(models.Model):
     def __unicode__(self):
         return u'{0}-{1}'.format(self.unique_id, self.first_name)
 
-    # class Meta:
-    #     app_label = 'student_database'
-    #     db_table = 'student_base_info'
-    #     verbose_name = _("Student Base")
+    class Meta:
+        verbose_name = _("Student Base")

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Students
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'students:create' %}">New student</a>
+  <br>
+  <br>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in object_list %}
+        <tr>
+          <td><a href="#">{{ student.event_name }}</a></td>
+          <td>{{ student.event_start_date_time }}</td>
+          {% if student.event_city %}
+            <td>{{ student.event_city }}, {{student.event_state}}</td>
+          {% else %}
+            <td></td>
+          {% endif %}
+        </tr>
+      {% empty %}
+        <tr>
+          <td>No student has been created yet</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
