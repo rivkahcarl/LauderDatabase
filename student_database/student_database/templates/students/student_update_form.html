@@ -9,5 +9,15 @@
       <input type="submit" value="Update" class="btn btn-primary"/>
     </div>
   </form>
+  <a href="{% url 'students:create' object.pk %}" class="btn btn-primary">Add Staff Contact Note</a>
+
+  <hr>
+  <h4>History of Student Contacts</h4>
+  {% for contact in object.staffcontact_set.all %}
+      <b>{{contact.conversation_date_time}}</b>
+      <p>{{contact.note}}</p>
+  {% empty %}
+  <p>No contacts have been made with this student</p>
+  {% endfor %}
 
 {% endblock %}
