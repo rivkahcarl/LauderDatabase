@@ -5,6 +5,12 @@ from django_countries.fields import CountryField
 from django.conf import settings
 
 
+GENDER_CHOICES = (('Male', 'Male'),
+                  ('Female', 'Female'),
+                  ('Other', 'Other'),
+                  ('Prefer not to say', 'Prefer not to say'))
+
+
 class Student(models.Model):
     first_name = models.CharField(max_length=512,
                                   null=False,
@@ -35,6 +41,18 @@ class Student(models.Model):
         blank=True,
         )
 
+    gender = models.CharField(
+        choices=GENDER_CHOICES,
+        max_length=30,
+        null=True,
+        blank=True
+    )
+
+    age = models.IntegerField(
+        null=True,
+        blank=True,
+        )
+
     zip = models.CharField(
         max_length=10,
         null=True,
@@ -42,16 +60,10 @@ class Student(models.Model):
         help_text=_("Zipcode"),
     )
 
-    region = models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        help_text=_("Region"),
-    )
     country = CountryField(null=True)
 
     def __unicode__(self):
-        return u'{0}-{1}'.format(self.unique_id, self.first_name)
+        return u'{0}-{1}'.format(self.id, self.first_name)
 
     class Meta:
         verbose_name = _("Student Base")

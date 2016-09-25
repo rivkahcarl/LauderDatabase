@@ -22,13 +22,12 @@
     <tbody>
       {% for student in object_list %}
         <tr>
-          <td><a href="#">{{ student.event_name }}</a></td>
-          <td>{{ student.event_start_date_time }}</td>
-          {% if student.event_city %}
-            <td>{{ student.event_city }}, {{student.event_state}}</td>
-          {% else %}
-            <td></td>
-          {% endif %}
+          <td>
+          	<a href="#">{{ student.first_name }} {{ student.last_name }}</a>
+          </td>
+          <td>{{ student.gender }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.city }}, {{student.state }}</td>
         </tr>
       {% empty %}
         <tr>
