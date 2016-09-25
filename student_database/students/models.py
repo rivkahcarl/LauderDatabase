@@ -67,3 +67,11 @@ class Student(models.Model):
 
     class Meta:
         verbose_name = _("Student Base")
+
+
+class StaffContact(models.Model):
+    student = models.ForeignKey(Student)
+    note = models.TextField()
+    conversation_date_time = models.DateTimeField(
+        help_text=_('Example format: 10/25/2006 14:30')
+    )
