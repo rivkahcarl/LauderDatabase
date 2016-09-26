@@ -2,7 +2,10 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
+from django.conf import settings
+
 from programs.models import Program
+from students.models import Student
 
 
 PROGRAM_FORM_FIELDS = ['event_name', 'event_start_date_time',
@@ -33,4 +36,8 @@ class AddStudents(TemplateView):
         ctx = super(AddStudents, self).get_context_data(**kwargs)
         ctx['program_pk'] = kwargs['pk']
         ctx['program_title'] = Program.objects.get(pk=kwargs['pk']).event_name
+        # TODO-Benny: check if the student is in the program already and then
+        # use the check to make the checkbox disabled or no
+        ctx['students'] = Student.objects.all()
+        ctx['states'] = settings.US_STATES
         return ctx

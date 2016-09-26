@@ -8,7 +8,17 @@
 
 {% block content %}
   <h4>{{ program_title }}</h4>
-  <a class="btn btn-success" href="{% url 'programs:create' %}">Add Students</a>
+  <a class="btn btn-success" href="{% url 'programs:create' %}" style="display:none;">Add Students</a>
+
+  <label>Filter by State
+    <select>
+      <option value="">None Selected</option>
+      {% for state in states %}
+        <option value="{{ state.0 }}">{{ state.1 }}</option>
+      {% endfor %}
+    </select> 
+  </label>
+  
   <br><br>
 
   <table class="table table-striped">
@@ -19,12 +29,27 @@
         <th>Student Location</th>
       </tr>
     </thead>
-    <tbody class="add-students-list" data->
+    <tbody class="add-students-list" data-program-id="{{ program_pk }}">
+      {% for student in students %}
+        <tr>
+          <td>
+            <input type="checkbox" value="{{ student.pk }}"></td>
+          <td>
+            {{ student.first_name }} {{ student.last_name }}
+          </td>
+          <td class="location-cell" data-city="{{ student.city }}" data-state="{{ student.state }}">{{ student.city }}, {{student.state }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td>No student has been created yet</td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
 
 {% endblock %}
 
 {% block extra-js %}
+  <script src="{% static 'libs/jQueryv3.1.1.min.js' %}"></script>
   <script src="{% static 'js/add_students_to_program.js' %}"></script>
 {% endblock %}
