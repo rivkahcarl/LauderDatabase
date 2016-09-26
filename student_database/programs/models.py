@@ -4,8 +4,11 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings
 
+from students.models import Student
+
 
 class Program(models.Model):
+    students = models.ManyToManyField(Student)
     event_name = models.CharField(max_length=512)
 
     event_start_date_time = models.DateTimeField(

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}
+  Add Students To Program {{ program_title }}
+{% endblock %}
+
+{% block content %}
+  <h4>{{ program_title }}</h4>
+  <a class="btn btn-success" href="{% url 'programs:create' %}">Add Students</a>
+  <br><br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Student Name</th>
+        <th>Student Location</th>
+      </tr>
+    </thead>
+    <tbody class="add-students-list" data->
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block extra-js %}
+  <script src="{% static 'js/add_students_to_program.js' %}"></script>
+{% endblock %}

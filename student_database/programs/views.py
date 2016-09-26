@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-
 from programs.models import Program
 
 
@@ -24,3 +24,13 @@ class ProgramUpdate(UpdateView):
     model = Program
     fields = PROGRAM_FORM_FIELDS
     template_name_suffix = '_update_form'
+
+
+class AddStudents(TemplateView):
+    template_name = "programs/add_students.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AddStudents, self).get_context_data(**kwargs)
+        ctx['program_pk'] = kwargs['pk']
+        ctx['program_title'] = Program.objects.get(pk=kwargs['pk']).event_name
+        return ctx

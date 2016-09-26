@@ -14,7 +14,9 @@
 
   <hr>
   <h4>Program Students</h4>
-  <a href="#" class="btn btn-success">Add Students to Program</a><br>
+  <a href="{% url 'programs:add-students' object.pk %}" class="btn btn-success">Add Students to Program</a>
+  <br><br>
+
   {% for student in object.student_set.all %}
       <p>{{student.first_name}} {{ student.last_name }}</p>
   {% empty %}
