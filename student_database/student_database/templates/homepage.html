@@ -3,9 +3,11 @@
 {% block content %}
   {% if user.is_authenticated %}
 
-    <a href="{% url 'students:students-list' %}">Students</a><br>
-    <a href="{% url 'programs:programs-list' %}">Programs</a><br>
-  
+    <div class="btn-group btn-group-justified btn-group-lg">
+      <a href="{% url 'students:students-list' %}" class="btn btn-default">Students</a>
+      <a href="{% url 'programs:programs-list' %}" class="btn btn-default">Programs</a>
+    </div>
+
   {% else %}
     Don't have an account?  Signup:
     <form role="form" method="post" action="{% url 'home:register' %}">
