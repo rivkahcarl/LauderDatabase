@@ -21,7 +21,7 @@
     <tbody>
       {% for program in object_list %}
         <tr>
-          <td><a href="#">{{ program.event_name }}</a></td>
+          <td><a href="{% url 'programs:update' program.pk %}">{{ program.event_name }}</a></td>
           <td>{{ program.event_start_date_time }}</td>
           {% if program.event_city %}
             <td>{{ program.event_city }}, {{program.event_state}}</td>
