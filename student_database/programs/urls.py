@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^create$',
         login_required(views.ProgramCreate.as_view()),
         name='create'),
-    url(r'^add-students(?P<pk>[0-9]+)/$',
+    url(r'^add-students/(?P<pk>[0-9]+)/$',
         login_required(views.AddStudents.as_view()),
         name='add-students'),
     url(r'^update/(?P<pk>[0-9]+)/$',

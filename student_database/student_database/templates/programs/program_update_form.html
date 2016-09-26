@@ -14,10 +14,10 @@
 
   <hr>
   <h4>Program Students</h4>
-  <a href="{% url 'programs:add-students' object.pk %}" class="btn btn-success">Add Students to Program</a>
+  <a href="{% url 'programs:add-students' object.pk %}" class="btn btn-success">Add/Remove Students to Program</a>
   <br><br>
 
-  {% for student in object.student_set.all %}
+  {% for student in object.students.all %}
       <p>{{student.first_name}} {{ student.last_name }}</p>
   {% empty %}
     <p>No Students have been assigned to this progam</p>

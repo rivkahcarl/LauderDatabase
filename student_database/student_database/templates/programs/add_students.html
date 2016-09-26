@@ -8,7 +8,7 @@
 
 {% block content %}
   <h4>{{ program_title }}</h4>
-  <a class="btn btn-success" href="{% url 'programs:create' %}" style="display:none;">Add Students</a>
+  <br>
 
   <label>Filter by State
     <select>
@@ -20,36 +20,40 @@
   </label>
   
   <br><br>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Student Name</th>
-        <th>Student Location</th>
-      </tr>
-    </thead>
-    <tbody class="add-students-list" data-program-id="{{ program_pk }}">
-      {% for student in students %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <input class="btn btn-success" href="{% url 'programs:create' %}" type="submit" value="Save Enrollment Changes" style="display:none;">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td>
-            <input type="checkbox" value="{{ student.pk }}"></td>
-          <td>
-            {{ student.first_name }} {{ student.last_name }}
-          </td>
-          <td class="location-cell" data-city="{{ student.city }}" data-state="{{ student.state }}">{{ student.city }}, {{student.state }}</td>
+          <th></th>
+          <th>Student Name</th>
+          <th>Student Location</th>
         </tr>
-      {% empty %}
-        <tr>
-          <td>No student has been created yet</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="add-students-list" data-program-id="{{ program_pk }}">
+        {% for student in students %}
+          <tr>
+            <td>
+              <input type="checkbox" name="add-students" value="{{ student.pk }}" {% if student.pk in enrolled %}checked{% else %}{% endif %}></td>
+            <td>
+              {{ student.first_name }} {{ student.last_name }}
+            </td>
+            <td class="location-cell" data-city="{{ student.city }}" data-state="{{ student.state }}">{{ student.city }}, {{student.state }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td>No student has been created yet</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
 
 {% endblock %}
 
 {% block extra-js %}
   <script src="{% static 'libs/jQueryv3.1.1.min.js' %}"></script>
+  <script src="{% static 'libs/fuse.min.js' %}"></script>
   <script src="{% static 'js/add_students_to_program.js' %}"></script>
 {% endblock %}

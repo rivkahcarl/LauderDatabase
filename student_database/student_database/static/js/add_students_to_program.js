@@ -1,7 +1,10 @@
+// only show "Add students" button if a student is checked
 $( ":checkbox" ).change(function() {
   $('.btn-success').show();
 });
 
+
+// Filter by state
 $('select').change(function() {
   let selectedState = $(this).val();
   if (selectedState == '') {

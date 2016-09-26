@@ -36,8 +36,15 @@ class AddStudents(TemplateView):
         ctx = super(AddStudents, self).get_context_data(**kwargs)
         ctx['program_pk'] = kwargs['pk']
         ctx['program_title'] = Program.objects.get(pk=kwargs['pk']).event_name
-        # TODO-Benny: check if the student is in the program already and then
-        # use the check to make the checkbox disabled or no
         ctx['students'] = Student.objects.all()
+        ctx['enrolled'] = set(Student.objects.filter(program__id=kwargs['pk']).values_list('id', flat=True))
+        # ctx['non_enrolled'] = set(Student.objects.exclude(program__id=kwargs['pk']).values_list('id', flat=True))
         ctx['states'] = settings.US_STATES
         return ctx
+
+    def post(self, request, *args, **kwargs):
+        program = Program.objects.get(pk=kwargs['pk'])
+        program.students.clear()
+        for student_id in request.POST.getlist('add-students', []):
+            program.students.add(Student.objects.get(pk=student_id))
+        return self.get(self, request, *args, **kwargs)
