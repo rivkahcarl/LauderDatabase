@@ -10,6 +10,11 @@
   <h4>{{ program_title }}</h4>
   <br>
 
+  <label>
+    Search Names
+    <input id="searchTextbox" placeholder="Enter name here" type="text">
+  </label>
+
   <label>Filter by State
     <select>
       <option value="">None Selected</option>
@@ -33,13 +38,13 @@
       </thead>
       <tbody class="add-students-list" data-program-id="{{ program_pk }}">
         {% for student in students %}
-          <tr>
+          <tr data-city="{{ student.city }}" data-state="{{ student.state }}" data-pk="{{ student.pk }}">
             <td>
               <input type="checkbox" name="add-students" value="{{ student.pk }}" {% if student.pk in enrolled %}checked{% else %}{% endif %}></td>
-            <td>
+            <td class="names">
               {{ student.first_name }} {{ student.last_name }}
             </td>
-            <td class="location-cell" data-city="{{ student.city }}" data-state="{{ student.state }}">{{ student.city }}, {{student.state }}</td>
+            <td>{{ student.city }}, {{student.state }}</td>
           </tr>
         {% empty %}
           <tr>
