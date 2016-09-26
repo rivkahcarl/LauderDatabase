@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
   <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <div class="form-group">
       <input type="submit" value="Update" class="btn btn-primary"/>
     </div>
   </form>
-  <a href="{% url 'students:create' object.pk %}" class="btn btn-success">Add Staff Contact Note</a>
 
   <hr>
   <h4>History of Student Contacts</h4>
+  <a href="{% url 'students:create' object.pk %}" class="btn btn-success">Add Staff Contact Note</a><br>
+
   {% for contact in object.staffcontact_set.all %}
       <b>{{contact.conversation_date_time}}</b>
       <p>{{contact.note}}</p>

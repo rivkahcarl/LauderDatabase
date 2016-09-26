@@ -35,6 +35,7 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_countries',
+    'crispy_forms',
 ]
 
 LOCAL_APPS = [
@@ -78,6 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'student_database.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
   {% if user.is_authenticated %}
 
@@ -12,7 +14,7 @@
     Don't have an account?  Signup:
     <form role="form" method="post" action="{% url 'home:register' %}">
       {% csrf_token %}
-      {{ signup_form }}
+      {{ signup_form|crispy }}
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Signup</button>
       </div>
@@ -22,7 +24,7 @@
     Already have an account?  Login:
     <form role="form" method="post" action="{% url 'home:login' %}">
       {% csrf_token %}
-      {{ login_form }}
+      {{ login_form|crispy }}
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
